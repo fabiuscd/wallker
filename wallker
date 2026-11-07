@@ -8,6 +8,7 @@ WALLPAPER_TIMER=""
 
 CONFIG_CHANGED=false
 TIMER_CHANGED=false
+BLACK=false
 
 save_config() {
     cat >"$CONFIG" <<EOF
@@ -39,6 +40,11 @@ EOF
 
 set_wallpaper() {
     feh --randomize --bg-fill "$WALLPAPER_DIR"
+
+    if [[ "$BLACK" == true ]]; then
+        BLACK_PIXEL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+        echo $BLACK_PIXEL | base64 -d | feh --bg-fill -
+    fi
 }
 
 show_help() {
@@ -85,7 +91,12 @@ while [[ $# -gt 0 ]]; do
         CONFIG_CHANGED=true
         shift 2
         ;;
-
+    -b | --black)
+        CONFIG_CHANGED=true
+        TIMER_CHANGED=true
+        BLACK=true
+        shift 1
+        ;;
     -h | --help)
         show_help
         exit 0
@@ -104,7 +115,6 @@ while [[ $# -gt 0 ]]; do
 
     esac
 done
-
 # Apply configuration changes
 if [[ "$CONFIG_CHANGED" == true ]]; then
     save_config
