@@ -54,6 +54,7 @@ wallker [OPTIONS]
 Options:
 -t, --timer TIME     Set wallpaper rotation interval
 -d, --dir DIR        Set wallpaper directory
+-b, --black          Set a fixed black wallpaper
 -h, --help           Show this help
 
 Examples:

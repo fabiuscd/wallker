@@ -22,6 +22,10 @@ wallker --timer 30m
 ```bash
 wallker --dir ~/Pictures/custom_wallpapers
 ```
+### Set a fixed black background wallpaper
+```bash
+wallker --black
+```
 ## How to uninstall
 ```bash
 bash uninstall.sh
